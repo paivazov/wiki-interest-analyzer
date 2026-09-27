@@ -1,0 +1,569 @@
+{
+ "_about": "All sentences the skill prints or puts in the PDF. Code fills the {placeholders}; the agent never writes these texts. To add a report language, add its code to 'languages', a name to 'language_names' and a string to every entry below. Severity: high = changes the conclusion, medium = qualifies it, info = context.",
+ "languages": [
+  "en",
+  "uk"
+ ],
+ "language_names": {
+  "en": {
+   "en": "English",
+   "uk": "англійська"
+  },
+  "de": {
+   "en": "German",
+   "uk": "німецька"
+  },
+  "fr": {
+   "en": "French",
+   "uk": "французька"
+  },
+  "es": {
+   "en": "Spanish",
+   "uk": "іспанська"
+  },
+  "it": {
+   "en": "Italian",
+   "uk": "італійська"
+  },
+  "pt": {
+   "en": "Portuguese",
+   "uk": "португальська"
+  },
+  "pl": {
+   "en": "Polish",
+   "uk": "польська"
+  },
+  "cs": {
+   "en": "Czech",
+   "uk": "чеська"
+  },
+  "sk": {
+   "en": "Slovak",
+   "uk": "словацька"
+  },
+  "uk": {
+   "en": "Ukrainian",
+   "uk": "українська"
+  },
+  "ru": {
+   "en": "Russian",
+   "uk": "російська"
+  },
+  "be": {
+   "en": "Belarusian",
+   "uk": "білоруська"
+  },
+  "bg": {
+   "en": "Bulgarian",
+   "uk": "болгарська"
+  },
+  "sr": {
+   "en": "Serbian",
+   "uk": "сербська"
+  },
+  "hr": {
+   "en": "Croatian",
+   "uk": "хорватська"
+  },
+  "sl": {
+   "en": "Slovenian",
+   "uk": "словенська"
+  },
+  "ro": {
+   "en": "Romanian",
+   "uk": "румунська"
+  },
+  "hu": {
+   "en": "Hungarian",
+   "uk": "угорська"
+  },
+  "nl": {
+   "en": "Dutch",
+   "uk": "нідерландська"
+  },
+  "sv": {
+   "en": "Swedish",
+   "uk": "шведська"
+  },
+  "no": {
+   "en": "Norwegian",
+   "uk": "норвезька"
+  },
+  "da": {
+   "en": "Danish",
+   "uk": "данська"
+  },
+  "fi": {
+   "en": "Finnish",
+   "uk": "фінська"
+  },
+  "et": {
+   "en": "Estonian",
+   "uk": "естонська"
+  },
+  "lv": {
+   "en": "Latvian",
+   "uk": "латиська"
+  },
+  "lt": {
+   "en": "Lithuanian",
+   "uk": "литовська"
+  },
+  "el": {
+   "en": "Greek",
+   "uk": "грецька"
+  },
+  "tr": {
+   "en": "Turkish",
+   "uk": "турецька"
+  },
+  "ar": {
+   "en": "Arabic",
+   "uk": "арабська"
+  },
+  "he": {
+   "en": "Hebrew",
+   "uk": "іврит"
+  },
+  "fa": {
+   "en": "Persian",
+   "uk": "перська"
+  },
+  "hi": {
+   "en": "Hindi",
+   "uk": "гінді"
+  },
+  "bn": {
+   "en": "Bengali",
+   "uk": "бенгальська"
+  },
+  "id": {
+   "en": "Indonesian",
+   "uk": "індонезійська"
+  },
+  "ms": {
+   "en": "Malay",
+   "uk": "малайська"
+  },
+  "vi": {
+   "en": "Vietnamese",
+   "uk": "в'єтнамська"
+  },
+  "th": {
+   "en": "Thai",
+   "uk": "тайська"
+  },
+  "zh": {
+   "en": "Chinese",
+   "uk": "китайська"
+  },
+  "ja": {
+   "en": "Japanese",
+   "uk": "японська"
+  },
+  "ko": {
+   "en": "Korean",
+   "uk": "корейська"
+  },
+  "ka": {
+   "en": "Georgian",
+   "uk": "грузинська"
+  },
+  "hy": {
+   "en": "Armenian",
+   "uk": "вірменська"
+  },
+  "az": {
+   "en": "Azerbaijani",
+   "uk": "азербайджанська"
+  },
+  "kk": {
+   "en": "Kazakh",
+   "uk": "казахська"
+  },
+  "uz": {
+   "en": "Uzbek",
+   "uk": "узбецька"
+  },
+  "ca": {
+   "en": "Catalan",
+   "uk": "каталонська"
+  },
+  "eu": {
+   "en": "Basque",
+   "uk": "баскська"
+  },
+  "gl": {
+   "en": "Galician",
+   "uk": "галісійська"
+  },
+  "sw": {
+   "en": "Swahili",
+   "uk": "суахілі"
+  },
+  "tl": {
+   "en": "Tagalog",
+   "uk": "тагальська"
+  },
+  "eo": {
+   "en": "Esperanto",
+   "uk": "есперанто"
+  },
+  "simple": {
+   "en": "Simple English",
+   "uk": "спрощена англійська"
+  }
+ },
+ "month_names": {
+  "en": [
+   "January",
+   "February",
+   "March",
+   "April",
+   "May",
+   "June",
+   "July",
+   "August",
+   "September",
+   "October",
+   "November",
+   "December"
+  ],
+  "uk": [
+   "січень",
+   "лютий",
+   "березень",
+   "квітень",
+   "травень",
+   "червень",
+   "липень",
+   "серпень",
+   "вересень",
+   "жовтень",
+   "листопад",
+   "грудень"
+  ]
+ },
+ "text": {
+  "trend.growing": {
+   "en": "is growing",
+   "uk": "зростає"
+  },
+  "trend.flat": {
+   "en": "shows no clear trend",
+   "uk": "не має виразного тренду"
+  },
+  "trend.declining": {
+   "en": "is declining",
+   "uk": "знижується"
+  },
+  "trend.insufficient_data": {
+   "en": "cannot be measured (too little data)",
+   "uk": "не вимірюваний (замало даних)"
+  },
+  "trend_short.growing": {
+   "en": "growing",
+   "uk": "зростає"
+  },
+  "trend_short.flat": {
+   "en": "no clear trend",
+   "uk": "без виразного тренду"
+  },
+  "trend_short.declining": {
+   "en": "declining",
+   "uk": "спадає"
+  },
+  "trend_short.insufficient_data": {
+   "en": "n/a",
+   "uk": "н/д"
+  },
+  "conf.high": {
+   "en": "high",
+   "uk": "висока"
+  },
+  "conf.medium": {
+   "en": "medium",
+   "uk": "середня"
+  },
+  "conf.low": {
+   "en": "low",
+   "uk": "низька"
+  },
+  "no_article": {
+   "en": "no article",
+   "uk": "немає статті"
+  },
+  "ans.single": {
+   "en": "{where}, interest in {topic} {trend}: its share of all page views changed {slope} per year over {n} months{yoy}. Confidence: {conf} — {reason}",
+   "uk": "{where} інтерес до теми «{topic}» {trend}: її частка в усіх переглядах змінювалася на {slope} на рік за {n} міс.{yoy}. Довіра: {conf} — {reason}"
+  },
+  "ans.yoy": {
+   "en": "; last 12 months vs the 12 before: {yoy}",
+   "uk": "; останні 12 міс. проти попередніх 12: {yoy}"
+  },
+  "ans.no_article_only": {
+   "en": "There is no article on {topic} {where}, so interest cannot be measured there — this is a content gap, not evidence of zero interest.",
+   "uk": "{where_cap} немає статті на тему «{topic}», тож інтерес там виміряти неможливо — це прогалина в контенті, а не доказ нульового інтересу."
+  },
+  "ans.lead": {
+   "en": "Strongest position: {wiki} — {level} views per million, {trend} ({slope}/yr, {conf} confidence).",
+   "uk": "Найсильніша позиція: {wiki} — {level} переглядів на мільйон, {trend} ({slope}/рік, довіра {conf})."
+  },
+  "ans.others": {
+   "en": "Others: {items}.",
+   "uk": "Інші: {items}."
+  },
+  "ans.other_item": {
+   "en": "{lang} {trend} ({slope}/yr, {conf} confidence)",
+   "uk": "{lang} — {trend} ({slope}/рік, довіра {conf})"
+  },
+  "ans.other_gap": {
+   "en": "{lang} has no article (content gap)",
+   "uk": "{lang} — немає статті (прогалина)"
+  },
+  "ans.explore": {
+   "en": "Worth exploring next: {langs}.",
+   "uk": "Варто дослідити наступними: {langs}."
+  },
+  "ans.explore_none": {
+   "en": "No language shows a trustworthy non-declining trend, so none stands out yet.",
+   "uk": "Жодна мова не показує надійного тренду без спаду, тож явного лідера поки немає."
+  },
+  "r.rank_note": {
+   "en": "Rank = average of the level rank and the trend rank (higher share and faster growth rank higher).",
+   "uk": "Ранг = середнє з рангу за рівнем і рангу за трендом (вища частка й швидше зростання — вищий ранг)."
+  },
+  "r.cluster": {
+   "en": "Articles per language",
+   "uk": "Статей на мову"
+  },
+  "ans.sizes": {
+   "en": "Levels are shares of each edition's own traffic; the editions differ greatly in size.",
+   "uk": "Рівні — це частки від трафіку кожного мовного розділу; розміри розділів дуже різні."
+  },
+  "reason.all_checks_passed": {
+   "en": "the trend is statistically clear, year-over-year agrees, spikes do not drive it and volumes are large enough.",
+   "uk": "тренд статистично чіткий, порівняння рік до року його підтверджує, сплески його не визначають, обсяги достатні."
+  },
+  "r.answer": {
+   "en": "Answer",
+   "uk": "Відповідь"
+  },
+  "r.chart_title": {
+   "en": "Topic share of all page views (views per million), monthly",
+   "uk": "Частка теми в усіх переглядах (переглядів на мільйон), помісячно"
+  },
+  "r.table": {
+   "en": "Per-language metrics",
+   "uk": "Показники за мовами"
+  },
+  "r.col_lang": {
+   "en": "Wikipedia",
+   "uk": "Вікіпедія"
+  },
+  "r.col_level": {
+   "en": "Level\n(per million)",
+   "uk": "Рівень\n(на мільйон)"
+  },
+  "r.col_views": {
+   "en": "Views /\nmonth",
+   "uk": "Перегляди\n/ міс."
+  },
+  "r.col_yoy": {
+   "en": "YoY",
+   "uk": "Рік до\nроку"
+  },
+  "r.col_slope": {
+   "en": "Trend %/yr\n(95% CI)",
+   "uk": "Тренд %/рік\n(95% ДІ)"
+  },
+  "r.col_trend": {
+   "en": "Direction",
+   "uk": "Напрям"
+  },
+  "r.col_conf": {
+   "en": "Confidence",
+   "uk": "Довіра"
+  },
+  "r.col_rank": {
+   "en": "Rank",
+   "uk": "Ранг"
+  },
+  "r.limits": {
+   "en": "What this does and doesn't tell you",
+   "uk": "Що це означає і чого не означає"
+  },
+  "r.note": {
+   "en": "Analyst note",
+   "uk": "Коментар аналітика"
+  },
+  "r.source": {
+   "en": "Data: Wikimedia Pageviews API (agent={agent}, access={access}), {start} – {end} ({n} complete months). Topic: Wikidata {qid}, {n_articles} article(s) per language incl. redirects. Method: topic views ÷ all views of the edition; Theil–Sen slope with block-bootstrap 95% CI; Mann–Kendall test; year-over-year on matching months; Hampel spike filter. wiki-interest-analyzer {version}, generated {date}.",
+   "uk": "Дані: Wikimedia Pageviews API (agent={agent}, access={access}), {start} – {end} ({n} повних міс.). Тема: Wikidata {qid}, статей на мову (з перенаправленнями): {n_articles}. Метод: перегляди теми ÷ усі перегляди розділу; нахил Тейла–Сена з блочним бутстрепом (95% ДІ); тест Манна–Кендалла; порівняння рік до року за однаковими місяцями; фільтр сплесків Гампеля. wiki-interest-analyzer {version}, {date}."
+  },
+  "r.title_default": {
+   "en": "Interest in “{topic}” on Wikipedia: {langs}",
+   "uk": "Інтерес до теми «{topic}» у Вікіпедії: {langs}"
+  },
+  "r.spike": {
+   "en": "spike",
+   "uk": "сплеск"
+  },
+  "r.no_article_legend": {
+   "en": "no article",
+   "uk": "немає статті"
+  },
+  "ans.yoy_spiky": {
+   "en": "; last 12 months vs the 12 before: {yoy} without one-off spikes ({raw} with them)",
+   "uk": "; останні 12 міс. проти попередніх 12: {yoy} без разових сплесків ({raw} разом з ними)"
+  },
+  "rank.why": {
+   "en": "level {level} per million (#{lvl_rank} of {n}), {trend} ({slope}/yr, #{trend_rank} of {n}), {conf} confidence",
+   "uk": "рівень {level} на мільйон (#{lvl_rank} з {n}), {trend} ({slope}/рік, #{trend_rank} з {n}), довіра {conf}"
+  },
+  "rank.gap": {
+   "en": "no article — content gap",
+   "uk": "немає статті — прогалина в контенті"
+  },
+  "rank.insufficient": {
+   "en": "too little data for a trend",
+   "uk": "замало даних для тренду"
+  }
+ },
+ "fragments": {
+  "uk_2022_span": {
+   "en": " This window spans 2022, so confidence is capped at medium.",
+   "uk": " Цей період охоплює 2022 р., тому довіра не вища за середню."
+  },
+  "article_created_trimmed": {
+   "en": "the window was shortened to start there.",
+   "uk": "період скорочено, щоб починався звідти."
+  },
+  "article_created_excluded": {
+   "en": "they were left out of the trend so their creation doesn't look like growth.",
+   "uk": "їх виключено з тренду, щоб їхня поява не виглядала як зростання."
+  }
+ },
+ "caveats": {
+  "curiosity_not_demand": {
+   "severity": "info",
+   "en": "Page views measure curiosity, not willingness to pay: use this to pick directions to validate, not as demand.",
+   "uk": "Перегляди показують цікавість, а не готовність платити: це підказка, що перевіряти далі, а не оцінка попиту."
+  },
+  "edition_sizes_differ": {
+   "severity": "info",
+   "en": "Language editions differ hugely in size and readership (many people also read English Wikipedia), so only shares are compared across languages, never raw view counts.",
+   "uk": "Мовні розділи дуже різні за розміром і читацькою аудиторією (багато хто читає й англійську Вікіпедію), тож між мовами порівнюються лише частки, а не абсолютні перегляди."
+  },
+  "no_article": {
+   "severity": "high",
+   "en": "{wiki_cap} has no article on this topic: that is a content gap (possibly an opening), not zero interest.",
+   "uk": "{wiki_cap} не має статті на цю тему: це прогалина в контенті (можливо, нагода), а не нульовий інтерес."
+  },
+  "insufficient_data": {
+   "severity": "high",
+   "en": "{wiki_cap}: only {n} usable months — too few to measure a trend.",
+   "uk": "{wiki_cap}: лише {n} придатних місяців — замало, щоб оцінити тренд."
+  },
+  "no_yoy_short_window": {
+   "severity": "medium",
+   "en": "Only {n} months: no year-over-year check is possible and seasonal swings can look like a trend (confidence capped at medium).",
+   "uk": "Лише {n} міс.: порівняння рік до року неможливе, а сезонні коливання можуть виглядати як тренд (довіра не вища за середню)."
+  },
+  "weak_significance": {
+   "severity": "medium",
+   "en": "{wiki_cap}: the trend is suggestive, not conclusive (Mann–Kendall p={p}).",
+   "uk": "{wiki_cap}: тренд імовірний, але не доведений (p Манна–Кендалла = {p})."
+  },
+  "wide_interval": {
+   "severity": "medium",
+   "en": "{wiki_cap}: no clear direction — the trend is not distinguishable from noise; anything from {lo} to {hi} per year is plausible (95% CI, Mann–Kendall p={p}).",
+   "uk": "{wiki_cap}: виразного напрямку немає — тренд не відрізняється від шуму; правдоподібна будь-яка зміна від {lo} до {hi} на рік (95% ДІ, p Манна–Кендалла = {p})."
+  },
+  "spike_driven_growth": {
+   "severity": "high",
+   "en": "{wiki_cap}: {share}% of the apparent growth comes from short spikes ({months}); without them the change is {clean} instead of {raw}. The growth is event-driven, not a durable trend.",
+   "uk": "{wiki_cap}: {share}% видимого зростання дають короткі сплески ({months}); без них зміна {clean} замість {raw}. Зростання спричинене подіями, а не сталим трендом."
+  },
+  "spikes_present": {
+   "severity": "info",
+   "en": "{wiki_cap}: short spikes in {months} (news or events) were detected and excluded from the trend estimate.",
+   "uk": "{wiki_cap}: виявлено короткі сплески ({months}) — новини чи події; їх виключено з оцінки тренду."
+  },
+  "seasonal_peaks": {
+   "severity": "info",
+   "en": "{wiki_cap}: peaks recur every {cal} (seasonal, e.g. the school year) — treated as seasonality, not news.",
+   "uk": "{wiki_cap}: піки повторюються щороку ({cal}) — це сезонність (напр., навчальний рік), а не новини."
+  },
+  "articles_disagree": {
+   "severity": "medium",
+   "en": "{wiki_cap}: only {agree} of {total} articles in the topic cluster follow the overall direction — the picture depends on which articles you count.",
+   "uk": "{wiki_cap}: лише {agree} з {total} статей кластера теми рухаються в загальному напрямку — висновок залежить від того, які статті враховувати."
+  },
+  "possible_bot_spike": {
+   "severity": "medium",
+   "en": "{wiki_cap}: the {month} spike ({ratio}× normal) sits almost entirely on one page ({article}) — a typical sign of unflagged automated traffic.",
+   "uk": "{wiki_cap}: сплеск {month} ({ratio}× від норми) майже повністю припадає на одну сторінку ({article}) — типова ознака непоміченого автоматизованого трафіку."
+  },
+  "low_volume": {
+   "severity": "high",
+   "en": "{wiki_cap}: only ~{views} views per month — small numbers are noisy.",
+   "uk": "{wiki_cap}: лише ~{views} переглядів на місяць — малі числа дуже шумні."
+  },
+  "small_volume": {
+   "severity": "medium",
+   "en": "{wiki_cap}: only ~{views} views per month — modest numbers, so confidence is capped at medium.",
+   "uk": "{wiki_cap}: лише ~{views} переглядів на місяць — невеликі числа, тож довіра не вища за середню."
+  },
+  "signals_disagree": {
+   "severity": "medium",
+   "en": "{wiki_cap}: the long-run slope ({slope}/yr) and the year-over-year change ({yoy}) point in different directions.",
+   "uk": "{wiki_cap}: довгостроковий нахил ({slope}/рік) і зміна рік до року ({yoy}) вказують у різні боки."
+  },
+  "edition_wide_growth": {
+   "severity": "medium",
+   "en": "{wiki_cap}: raw views changed {abs}/yr but the topic's share did not grow ({share}/yr) — the growth reflects the whole language edition, not the topic.",
+   "uk": "{wiki_cap}: абсолютні перегляди змінились на {abs}/рік, але частка теми не зросла ({share}/рік) — зростає весь мовний розділ, а не інтерес до теми."
+  },
+  "edition_traffic_declining": {
+   "severity": "medium",
+   "en": "Whole-edition human page views are falling ({items} per year) — search engines and AI answer directly and bots get reclassified. Topic shares correct for this; raw view counts do not.",
+   "uk": "Загальні перегляди людьми падають у самих розділах ({items} на рік) — пошуковики й ШІ відповідають напряму, боти перекласифіковуються. Частки теми це враховують, абсолютні перегляди — ні."
+  },
+  "uk_2022_shift": {
+   "severity": "medium",
+   "en": "Ukrainian Wikipedia's readership shifted structurally from 2022 (many readers moved from Russian Wikipedia), so raw growth there is mostly edition growth; judge the topic by its share, as done here.{span}",
+   "uk": "Аудиторія української Вікіпедії структурно змінилася з 2022 р. (багато читачів перейшли з російської), тому абсолютне зростання там здебільшого — зростання розділу; тему слід оцінювати за часткою, як тут.{span}"
+  },
+  "partial_cluster": {
+   "severity": "medium",
+   "en": "{wiki_cap} has only {present} of the {total} topic articles (missing: {missing}), so its level is not fully comparable with other languages.",
+   "uk": "{wiki_cap} має лише {present} з {total} статей теми (бракує: {missing}), тож її рівень не повністю порівнюваний з іншими мовами."
+  },
+  "article_created_in_window": {
+   "severity": "medium",
+   "en": "{wiki_cap}: {articles} appeared only in {month}; {action}",
+   "uk": "{wiki_cap}: {articles} з'явилися лише в {month}; {action}"
+  },
+  "incomplete_month_excluded": {
+   "severity": "info",
+   "en": "The current month ({month}) is incomplete and was excluded.",
+   "uk": "Поточний місяць ({month}) неповний і його виключено."
+  },
+  "latest_month_unpublished": {
+   "severity": "info",
+   "en": "Wikimedia has not yet published {month}; the analysis ends at {end}.",
+   "uk": "Wikimedia ще не опублікувала дані за {month}; аналіз закінчується {end}."
+  },
+  "window_clamped": {
+   "severity": "info",
+   "en": "Per-article data starts in July 2015; the window was moved to start there.",
+   "uk": "Дані по статтях доступні з липня 2015 р.; початок періоду зсунуто туди."
+  },
+  "redirects_truncated": {
+   "severity": "info",
+   "en": "{wiki_cap}: only the first {n} redirects of {article} were counted.",
+   "uk": "{wiki_cap}: враховано лише перші {n} перенаправлень статті {article}."
+  }
+ }
+}

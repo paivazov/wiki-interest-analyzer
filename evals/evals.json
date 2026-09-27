@@ -1,0 +1,506 @@
+{
+ "skill_name": "wiki-interest-analyzer",
+ "model": "claude-haiku-4-5",
+ "notes": "Each eval runs in its own empty workspace (the agent is told to cd there). Checks read: the CLI invocation log (filtered by cwd = workspace), files the CLI wrote (spec.json, analysis.json, report.pdf), the agent's final reply, and the agent transcript. 'artifact' checks only make sense with the skill; 'reply' checks apply to both with-skill and baseline runs. Grader: evals/grade.py. caveats_relayed / confidence_label_exact read the verdict the agent saw from the invocation log (last analyze/report call of the graded turn: confidence per language, caveat codes, must_relay codes).",
+ "evals": [
+  {
+   "id": 1,
+   "name": "compare-pl-cs-intermittent-fasting",
+   "prompt": "Порівняй зростання інтересу до інтервального голодування в польськомовній та чеськомовній Wikipedia за останні два роки.",
+   "expected_output": "Resolves the topic via Wikidata Q1666254 (titles differ: cs 'Přerušovaný půst'; pl has NO article). Uses share-of-edition normalization over 24 months. Reports cs trend + confidence with reason, and pl as a content gap (not zero interest).",
+   "assertions": [
+    {
+     "id": "1.qid",
+     "kind": "artifact",
+     "check": "spec_field",
+     "field": "topic_qid",
+     "equals": "Q1666254",
+     "text": "Topic resolved through Wikidata QID, not guessed titles"
+    },
+    {
+     "id": "1.langs",
+     "kind": "artifact",
+     "check": "spec_langs_include",
+     "langs": [
+      "pl",
+      "cs"
+     ],
+     "text": "Both languages in the spec"
+    },
+    {
+     "id": "1.window",
+     "kind": "artifact",
+     "check": "analysis_months",
+     "equals": 24,
+     "before_turn": 1,
+     "text": "Two-year window (24 complete months)"
+    },
+    {
+     "id": "1.share",
+     "kind": "artifact",
+     "check": "spec_field",
+     "field": "normalize",
+     "equals": "share_of_project",
+     "text": "Share-of-edition normalization"
+    },
+    {
+     "id": "1.both_langs_in_reply",
+     "kind": "reply",
+     "check": "regex_all",
+     "patterns": [
+      "польськ|polish|\\bpl\\b",
+      "чеськ|czech|\\bcs\\b"
+     ],
+     "text": "Reply covers both languages"
+    },
+    {
+     "id": "1.gap",
+     "kind": "reply",
+     "check": "regex_any",
+     "patterns": [
+      "немає статті",
+      "відсутн\\w* стат",
+      "стат\\w* немає",
+      "прогалин",
+      "no article"
+     ],
+     "text": "Polish reported as missing article / content gap"
+    },
+    {
+     "id": "1.confidence",
+     "kind": "reply",
+     "check": "regex_all",
+     "patterns": [
+      "довір|впевнен|надійн|confidence",
+      "низьк|середн|висок|low|medium|high"
+     ],
+     "text": "Mentions a confidence level"
+    },
+    {
+     "id": "1.caveats_relayed",
+     "kind": "artifact",
+     "check": "caveats_relayed",
+     "before_turn": 1,
+     "text": "Reply relays the curiosity≠demand line and at least one caveat from this run's analysis"
+    },
+    {
+     "id": "1.confidence_label_exact",
+     "kind": "artifact",
+     "check": "confidence_label_exact",
+     "before_turn": 1,
+     "text": "Reply uses the JSON confidence labels as given (no 'very low', no 'moderate'), for every level in the verdict"
+    },
+    {
+     "id": "1.no_own_code",
+     "kind": "both",
+     "check": "no_own_analysis_code",
+     "text": "Did not write its own analysis/plotting code"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "name": "astronomy-uk-trust",
+   "prompt": "Ми думаємо додати курс з астрономії до освітнього застосунку. Чи зростає інтерес до цієї теми в україномовній Wikipedia, і наскільки цьому зростанню можна довіряти?",
+   "expected_output": "Uses a cluster (astronomy + related articles), not a single article. Real data (2023-09..2026-08): share declining ~-40%/yr with high confidence, September school-year peaks are seasonal. Emits the uk 2022 readership-shift caveat and gives an explicit confidence with its reason.",
+   "assertions": [
+    {
+     "id": "2.cluster",
+     "kind": "artifact",
+     "check": "spec_cluster_min",
+     "min": 3,
+     "text": "Topic analysed as a cluster of >= 3 articles"
+    },
+    {
+     "id": "2.uk_caveat_emitted",
+     "kind": "artifact",
+     "check": "analysis_has_caveat",
+     "code": "uk_2022_shift",
+     "text": "uk-2022 caveat emitted by the analysis"
+    },
+    {
+     "id": "2.uk_caveat_relayed",
+     "kind": "reply",
+     "check": "regex_any",
+     "patterns": [
+      "2022"
+     ],
+     "text": "Reply relays the 2022 structural-shift caveat"
+    },
+    {
+     "id": "2.confidence",
+     "kind": "reply",
+     "check": "regex_all",
+     "patterns": [
+      "довір|впевнен|надійн",
+      "висок|середн|низьк"
+     ],
+     "text": "Explicit confidence level"
+    },
+    {
+     "id": "2.direction",
+     "kind": "reply",
+     "check": "regex_any",
+     "patterns": [
+      "зниж",
+      "спад",
+      "падає",
+      "падін",
+      "не зростає",
+      "скорочу"
+     ],
+     "text": "States the (declining) direction the data shows"
+    },
+    {
+     "id": "2.confidence_label_exact",
+     "kind": "artifact",
+     "check": "confidence_label_exact",
+     "text": "Reply uses the JSON confidence labels as given (no 'very low', no 'moderate'), for every level in the verdict"
+    },
+    {
+     "id": "2.no_own_code",
+     "kind": "both",
+     "check": "no_own_analysis_code",
+     "text": "Did not write its own analysis/plotting code"
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "name": "language-learning-report",
+   "prompt": "Ми створюємо застосунок для вивчення мов. Порівняй інтерес до вивчення англійської в німецькій, польській, турецькій та в'єтнамській Вікіпедії та підготуй короткий звіт: які аудиторії варто дослідити наступними й чому?",
+   "expected_output": "One-page PDF in Ukrainian with chart, table, ranking and a limitations section; the reply ranks the four languages and names which to explore next with reasons.",
+   "assertions": [
+    {
+     "id": "3.pdf_one_page",
+     "kind": "both",
+     "check": "pdf_pages",
+     "equals": 1,
+     "text": "A PDF report exists and has exactly one page"
+    },
+    {
+     "id": "3.pdf_limits",
+     "kind": "both",
+     "check": "pdf_regex",
+     "patterns": [
+      "Що це означає і чого не означає|обмеж|Обмеж|Limitations|What this does"
+     ],
+     "text": "Report contains a limitations section"
+    },
+    {
+     "id": "3.langs",
+     "kind": "artifact",
+     "check": "spec_langs_include",
+     "langs": [
+      "de",
+      "pl",
+      "tr",
+      "vi"
+     ],
+     "text": "All four languages analysed"
+    },
+    {
+     "id": "3.ranking",
+     "kind": "reply",
+     "check": "regex_all",
+     "patterns": [
+      "німец|німеч|german",
+      "польськ|польщ|polish",
+      "турец|туреч|turk",
+      "в.єтнам|vietnam"
+     ],
+     "text": "Reply covers all four languages"
+    },
+    {
+     "id": "3.next",
+     "kind": "reply",
+     "check": "regex_any",
+     "patterns": [
+      "наступн",
+      "дослідити",
+      "варто"
+     ],
+     "text": "Says which audiences to explore next"
+    },
+    {
+     "id": "3.caveats_relayed",
+     "kind": "artifact",
+     "check": "caveats_relayed",
+     "text": "Reply relays the curiosity≠demand line and at least one caveat from this run's analysis"
+    },
+    {
+     "id": "3.confidence_label_exact",
+     "kind": "artifact",
+     "check": "confidence_label_exact",
+     "text": "Reply uses the JSON confidence labels as given (no 'very low', no 'moderate'), for every level in the verdict"
+    },
+    {
+     "id": "3.no_computed_ratios",
+     "kind": "reply",
+     "check": "regex_none",
+     "patterns": [
+      "вдвічі|втричі|вчетверо|\\btwice\\b",
+      "\\b[ув] \\d+(?:[.,]\\d+)? раз",
+      "\\d+(?:[.,]\\d+)?\\s*(?:раз(?:и|ів)?|[×x]|times)\\s+(?:більш|менш|вищ|нижч|перевищ|more|less|higher|lower|as)"
+     ],
+     "text": "Reply computes no ratios of its own ('twice as many', 'N× more'): numbers come from the JSON only"
+    },
+    {
+     "id": "3.no_own_code",
+     "kind": "both",
+     "check": "no_own_analysis_code",
+     "text": "Did not write its own analysis/plotting code"
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "name": "follow-up-add-sk-12-months",
+   "follows": 1,
+   "prompt": "А додай ще словацьку і візьми лише останні 12 місяців",
+   "expected_output": "Edits the existing spec (langs+=sk, months=12), does not re-resolve, downloads only sk data (pl/cs months are cached), and says 12 months = no year-over-year check (lower confidence). sk has no article either.",
+   "assertions": [
+    {
+     "id": "4.spec_set",
+     "kind": "artifact",
+     "check": "log_has_command",
+     "command": "spec",
+     "after_turn": 1,
+     "text": "Used `spec set` to edit the existing spec"
+    },
+    {
+     "id": "4.no_resolve",
+     "kind": "artifact",
+     "check": "log_lacks_command",
+     "command": "resolve",
+     "after_turn": 1,
+     "text": "Did not re-run resolve"
+    },
+    {
+     "id": "4.no_refetch",
+     "kind": "artifact",
+     "check": "followup_network_only",
+     "allowed_projects": [
+      "sk.wikipedia"
+     ],
+     "after_turn": 1,
+     "text": "No pageview downloads for pl/cs in the follow-up"
+    },
+    {
+     "id": "4.window",
+     "kind": "artifact",
+     "check": "analysis_months",
+     "equals": 12,
+     "text": "Window is 12 months"
+    },
+    {
+     "id": "4.no_yoy",
+     "kind": "reply",
+     "check": "regex_any",
+     "patterns": [
+      "рік до року",
+      "рік-до-року",
+      "YoY",
+      "year.over.year",
+      "порівнян\\w* з попередн\\w* рок"
+     ],
+     "text": "Notes that 12 months allows no year-over-year check"
+    },
+    {
+     "id": "4.slovak",
+     "kind": "reply",
+     "check": "regex_any",
+     "patterns": [
+      "словацьк",
+      "slovak"
+     ],
+     "text": "Reply covers Slovak"
+    },
+    {
+     "id": "4.confidence_label_exact",
+     "kind": "artifact",
+     "check": "confidence_label_exact",
+     "after_turn": 1,
+     "text": "Reply uses the JSON confidence labels as given (no 'very low', no 'moderate'), for every level in the verdict"
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "name": "mercury-ambiguous",
+   "prompt": "Чи росте інтерес до Меркурія в іспанській вікіпедії?",
+   "expected_output": "Does not guess: asks whether the user means the planet, the element (mercury/ртуть) or the Roman god. No analysis is run.",
+   "assertions": [
+    {
+     "id": "5.asks",
+     "kind": "reply",
+     "check": "regex_all",
+     "patterns": [
+      "\\?",
+      "планет",
+      "елемент|ртут|бог|міфолог"
+     ],
+     "text": "Asks the user which Mercury, naming the senses"
+    },
+    {
+     "id": "5.no_analyze",
+     "kind": "artifact",
+     "check": "log_lacks_command",
+     "command": "analyze",
+     "text": "No analysis before the user answers"
+    },
+    {
+     "id": "5.resolve_ambiguous",
+     "kind": "artifact",
+     "check": "log_status",
+     "command": "resolve",
+     "status": "ambiguous",
+     "text": "resolve returned 'ambiguous'"
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "name": "padel-missing-sk",
+   "prompt": "Порівняй інтерес до паделу в українській, польській, чеській і словацькій Вікіпедії.",
+   "expected_output": "sk.wikipedia has no padel article: reported as 'no article' / content gap, not as zero interest; the other three are compared by share.",
+   "assertions": [
+    {
+     "id": "6.missing_in_spec",
+     "kind": "artifact",
+     "check": "spec_missing_lang",
+     "lang": "sk",
+     "text": "Spec records sk as missing"
+    },
+    {
+     "id": "6.gap_reply",
+     "kind": "reply",
+     "check": "regex_any",
+     "patterns": [
+      "немає статті",
+      "відсутн\\w* стат",
+      "стат\\w* немає",
+      "прогалин",
+      "не має статті"
+     ],
+     "text": "Reports Slovak as missing article / content gap"
+    },
+    {
+     "id": "6.not_zero",
+     "kind": "reply",
+     "check": "regex_none",
+     "patterns": [
+      "(?<!не )нульов\\w* інтерес",
+      "(?<![\\d.,])0 переглядів",
+      "(?<!не )нуль переглядів"
+     ],
+     "text": "Does not present missing article as zero interest"
+    },
+    {
+     "id": "6.caveats_relayed",
+     "kind": "artifact",
+     "check": "caveats_relayed",
+     "text": "Reply relays the curiosity≠demand line and at least one caveat from this run's analysis"
+    },
+    {
+     "id": "6.confidence_label_exact",
+     "kind": "artifact",
+     "check": "confidence_label_exact",
+     "text": "Reply uses the JSON confidence labels as given (no 'very low', no 'moderate'), for every level in the verdict"
+    },
+    {
+     "id": "6.no_computed_ratios",
+     "kind": "reply",
+     "check": "regex_none",
+     "patterns": [
+      "вдвічі|втричі|вчетверо|\\btwice\\b",
+      "\\b[ув] \\d+(?:[.,]\\d+)? раз",
+      "\\d+(?:[.,]\\d+)?\\s*(?:раз(?:и|ів)?|[×x]|times)\\s+(?:більш|менш|вищ|нижч|перевищ|more|less|higher|lower|as)"
+     ],
+     "text": "Reply computes no ratios of its own ('twice as many', 'N× more'): numbers come from the JSON only"
+    },
+    {
+     "id": "6.no_own_code",
+     "kind": "both",
+     "check": "no_own_analysis_code",
+     "text": "Did not write its own analysis/plotting code"
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "name": "curling-spike",
+   "prompt": "Чи зростає інтерес до керлінгу в німецькомовній Вікіпедії за останні два роки? Нам це важливо для запуску спортивного застосунку.",
+   "expected_output": "Raw YoY looks like huge growth (+400%) but it is the Feb 2026 Winter Olympics spike: verdict low confidence, no clear durable trend, and the spike month is named.",
+   "assertions": [
+    {
+     "id": "7.low_conf_artifact",
+     "kind": "artifact",
+     "check": "analysis_lang_field",
+     "lang": "de",
+     "field": "confidence",
+     "equals": "low",
+     "text": "Verdict confidence is low"
+    },
+    {
+     "id": "7.spike_artifact",
+     "kind": "artifact",
+     "check": "analysis_has_caveat",
+     "code": "spike_driven_growth",
+     "text": "spike_driven_growth caveat emitted"
+    },
+    {
+     "id": "7.spike_named",
+     "kind": "reply",
+     "check": "regex_any",
+     "patterns": [
+      "2026-02",
+      "лют\\w* 2026",
+      "2026.{0,15}лют",
+      "Олімпі",
+      "олімпі",
+      "February 2026"
+     ],
+     "text": "Reply names the spike (Feb 2026 / Olympics)"
+    },
+    {
+     "id": "7.low_conf_reply",
+     "kind": "reply",
+     "check": "regex_any",
+     "patterns": [
+      "низьк"
+     ],
+     "text": "Reply says confidence is low"
+    },
+    {
+     "id": "7.raw_vs_clean",
+     "kind": "reply",
+     "check": "regex_all",
+     "patterns": [
+      "40\\s?%",
+      "43\\d\\s?%"
+     ],
+     "text": "Quotes growth both without (+40%) and with (+438%) the spike"
+    },
+    {
+     "id": "7.caveats_relayed",
+     "kind": "artifact",
+     "check": "caveats_relayed",
+     "text": "Reply relays the curiosity≠demand line and at least one caveat from this run's analysis"
+    },
+    {
+     "id": "7.confidence_label_exact",
+     "kind": "artifact",
+     "check": "confidence_label_exact",
+     "text": "Reply uses the JSON confidence labels as given (no 'very low', no 'moderate'), for every level in the verdict"
+    },
+    {
+     "id": "7.no_own_code",
+     "kind": "both",
+     "check": "no_own_analysis_code",
+     "text": "Did not write its own analysis/plotting code"
+    }
+   ]
+  }
+ ]
+}

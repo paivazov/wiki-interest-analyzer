@@ -1,0 +1,26 @@
+[project]
+name = "wiki-interest-analyzer"
+version = "0.1.0"
+description = "Agent Skill: Wikipedia pageview trends across language editions, with trust verdicts, charts and one-page PDF reports."
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+    "matplotlib>=3.8",
+    "reportlab>=4.1",
+    "requests>=2.31",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "scipy>=1.11",  # only used by tests to cross-check our own Theil-Sen implementation
+    "pypdf>=4.0",   # only used by tests/evals to check the PDF (page count, text)
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["scripts"]
+addopts = "-q"

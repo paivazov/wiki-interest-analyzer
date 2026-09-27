@@ -1,0 +1,9 @@
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+wia-runs/
+evals/runs/
+*.pyc
+.idea
+.vscode

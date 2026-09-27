@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Run the wiki-interest-analyzer CLI in the skill's own uv environment,
+# from any working directory (relative paths stay relative to your cwd).
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+unset VIRTUAL_ENV
+exec uv run --quiet --project "$DIR" python "$DIR/scripts/wia.py" "$@"
